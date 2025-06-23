@@ -14,7 +14,7 @@
 
     html, body {
       height: 100%;
-      font-family: Georgia, serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #f2f2f2;
       line-height: 1.6;
       scroll-behavior: smooth;
@@ -23,7 +23,6 @@
     body {
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                   url('https://www.regiomanager.de/wp-content/uploads/1995/08/schumacher-online-opener-2048x1280.jpg') no-repeat center center fixed;
-      background-size: cover;
       display: flex;
       flex-direction: column;
     }
@@ -40,7 +39,7 @@
     }
 
     a:hover {
-      color: #9a754f;
+      color: #7a5a3f;
       text-decoration: underline;
     }
 
@@ -51,7 +50,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(10px);
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
@@ -126,6 +124,7 @@
     /* Hero Section - wie STS Design */
     .hero-section {
       background: rgba(0, 0, 0, 0.7);
+      background-size: cover;
       color: white;
       padding: 4rem 0;
       min-height: 70vh;
@@ -146,7 +145,6 @@
       padding: 3rem;
       border-radius: 15px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -251,8 +249,7 @@
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 4px solid rgba(255, 255, 255, 0.1);
     }
 
     .service-card:hover {
@@ -289,7 +286,6 @@
       padding: 5rem 0;
       background: rgba(31, 31, 31, 0.95);
       color: white;
-      backdrop-filter: blur(10px);
     }
 
     .beratung-content {
@@ -358,8 +354,7 @@
       padding: 3rem;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba
     }
 
     .success-box h2, .contact-box h2 {
@@ -478,7 +473,7 @@
       left: 0;
       right: 0;
       height: 100px;
-      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+      background: linear-gradient(to bottom, transparent, rgba(44, 62, 80, 0.1));
     }
 
     .bottom-quote {
@@ -513,7 +508,7 @@
 
     /* Footer - Corporate Style */
     footer {
-      background: #111;
+      background: #1a252f;
       color: white;
       text-align: center;
       padding: 3rem 2rem;
@@ -844,4 +839,12 @@
       }
     });
 
-    // Accessibility: ESC
+    // Accessibility: ESC Taste schließt mobile Navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('nav').classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
