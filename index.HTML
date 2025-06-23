@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STS Finanzen – Landingpage</title>
+  <style>
+    /* Reset und Basis-Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Georgia, serif;
+      color: #f2f2f2;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                  url('https://www.regiomanager.de/wp-content/uploads/1995/08/schumacher-online-opener-2048x1280.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Links */
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: #9a754f;
+      text-decoration: underline;
+    }
+
+    /* Header - ähnlich wie Original */
+    header {
+      background: rgba(27, 27, 27, 0.95);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .logo-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* LOGO KLEINER GEMACHT - von 50px auf 35px */
+    .logo-btn img {
+      height: 25px;
+      width: auto;
+    }
+
+    /* Navigation - professioneller Look */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav a {
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav a:hover {
+      background-color: #9a754f;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    /* Container System */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section - wie STS Design */
+    .hero-section {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 4rem 0;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .willkommen-box {
+      background: rgba(245, 245, 245, 0.1);
+      color: #f2f2f2;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .willkommen-box h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .news-tag {
+      background: #9a754f;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .willkommen-box p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: #f2f2f2;
+    }
+
+    .hero-image {
+      text-align: center;
+    }
+
+    /* HERO BILD VERGRÖSSERT - von max-width: 400px auf 500px */
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Video Section */
+    .video-section {
+      padding: 4rem 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Services Section - Kachel-Design wie Original */
+    .services-section {
+      padding: 5rem 0;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      font-size: 1.2rem;
+      color: #f2f2f2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: rgba(245, 245, 245, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(154, 117, 79, 0.2);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
+      padding: 1rem;
+      background: rgba(31, 31, 31, 0.95);
+    }
+
+    .service-card-content {
+      padding: 2rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: #f2f2f2;
+      line-height: 1.6;
+    }
+
+    /* Beratung Section - professioneller Aufbau */
+    .beratung-section {
+      padding: 5rem 0;
+      background: rgba(31, 31, 31, 0.95);
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+
+    .beratung-content {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    /* BERATUNGSBILD VERGRÖSSERT - von width: 100% größer gemacht */
+    .beratung-bild img {
+      width: 110%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .beratung-text h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .beratung-text p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    .button-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #9a754f 0%, #b8906b 100%);
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(154, 117, 79, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .button-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(154, 117, 79, 0.4);
+      background: linear-gradient(135deg, #b8906b 0%, #9a754f 100%);
+    }
+
+    /* Erfolg & Kontakt Section */
+    .success-contact-section {
+      padding: 5rem 0;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9));
+    }
+
+    .success-contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .success-box, .contact-box {
+      background: rgba(245, 245, 245, 0.1);
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .success-box h2, .contact-box h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+      margin-bottom: 2rem;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .success-box p {
+      font-size: 1.1rem;
+      color: #f2f2f2;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* STEFAN SCHUMACHER BILD VERGRÖSSERT - von max-width: 350px auf 450px */
+    .success-box img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* STS Bulle Integration */
+    .sts-bulle {
+      position: absolute;
+      top: -30px;
+      right: 30px;
+      width: 80px;
+      height: auto;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+    }
+
+    .success-box {
+      position: relative;
+    }
+
+    /* Kontakt Form - professioneller Style */
+    .contact-box address {
+      font-style: normal;
+      margin-bottom: 2rem;
+      line-height: 2;
+      color: #f2f2f2;
+      font-size: 1.1rem;
+    }
+
+    .contact-box address strong {
+      color: #ffffff;
+      font-size: 1.2rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1.2rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #9a754f;
+      box-shadow: 0 0 0 3px rgba(154, 117, 79, 0.1);
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      background: linear-gradient(135deg, #9a754f 0%, #b8906b 100%);
+      color: white;
+      border: none;
+      padding: 1.2rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(154, 117, 79, 0.3);
+    }
+
+    /* NEUER HINTERGRUND UNTER DEM KONTAKTFORMULAR */
+    .bottom-background {
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9));
+      padding: 4rem 0 2rem 0;
+      margin-top: -2rem;
+      position: relative;
+    }
+
+    .bottom-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+    }
+
+    .bottom-quote {
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .bottom-quote h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      font-style: italic;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .bottom-quote p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .bottom-quote .signature {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-style: italic;
+      color: #b8906b;
+    }
+
+    /* Footer - Corporate Style */
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 1rem;
+    }
+
+    /* Responsive Design - Tablet */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(27, 27, 27, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav.active {
+        display: flex;
+      }
+
+      .nav a {
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .beratung-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .beratung-bild img {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .success-contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-section {
+        padding: 2rem 0;
+        min-height: 60vh;
+      }
+
+      .willkommen-box {
+        padding: 2rem;
+      }
+
+      .sts-bulle {
+        position: static;
+        margin: 1rem auto;
+        display: block;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+      }
+
+      .success-box img {
+        max-width: 100%;
+      }
+    }
+
+    /* Responsive Design - Mobile */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .willkommen-box,
+      .service-card-content,
+      .success-box,
+      .contact-box {
+        padding: 1.5rem;
+      }
+
+      .beratung-content,
+      .success-contact-grid {
+        gap: 2rem;
+      }
+
+      .services-grid {
+        gap: 1.5rem;
+      }
+
+      .services-section,
+      .beratung-section,
+      .success-contact-section {
+        padding: 3rem 0;
+      }
+
+      .nav a {
+        font-size: 0.8rem;
+      }
+
+      .bottom-background {
+        padding: 2rem 0 1rem 0;
+      }
+    }
+
+    /* Accessibility Improvements */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .nav-toggle,
+      .video-container,
+      .contact-form,
+      .bottom-background {
+        display: none;
+      }
+      
+      body {
+        background: white;
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header id="home">
+      <div class="header-content">
+        <button class="logo-btn" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})">
+          <img src="sts-logo.png" alt="STS Logo" />
+        </button>
+        
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Navigation umschalten">
+          ☰
+        </button>
+        
+        <nav class="nav" id="nav">
+          <a href="https://sts-finanzen.de/">Homepage</a>
+          <a href="#kontakt">Kontakt</a>
+          <a href="https://sts-finanzen.de/impressum/">Impressum</a>
+          <a href="https://sts-finanzen.de/datenschutzerklaerung/">Datenschutz</a>
+          <a href="https://sts-finanzen.de/wp-content/uploads/2021/07/Nachhaltigkeitsinformation_Schumacher_Finanzen.pdf">Nachhaltigkeit</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <div class="willkommen-box">
+            <h1>Herzlich Willkommen!</h1>
+            <div class="news-tag">18.01.23 | News</div>
+            <p>
+              <strong>„Abflachende Inflation, die nächsten Zinsschritte und was für uns Qualität bedeutet"</strong>
+            </p>
+            <p>
+              Der Zusatz „überraschend" begleitete die Berichterstattungen der letzten Woche über den
+              vorläufigen Verbraucherpreisindex für Deutschland: Mit 10,0 Prozent im November immer noch
+              zweistellig, aber doch 0,4 Prozent weniger als der finale Wert für den Oktober.
+            </p>
+            <p>
+              Das klingt zunächst unspektakulär, lag aber hinter den Erwartungen und ist der erste Rückgang
+              bei der Veränderung zum Vormonat seit einem Jahr.
+            </p>
+          </div>
+          <div class="hero-image">
+            <img src="https://sts-finanzen.de/wp-content/uploads/2020/03/Schumacher-Finanzen-Finanzierungen.jpg" alt="Finanzierungen" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section">
+      <div class="container">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Unternehmensvideo"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Unsere Leistungen</h2>
+          <p>Als unabhängiges Expertenteam bieten wir Ihnen maßgeschneiderte Finanzlösungen mit höchster Qualität und Transparenz.</p>
+        </div>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <img src="https://sts-finanzen.de/wp-content/uploads/2020/04/Schumacher_FuC_Logo_white_530x110.png" alt="Finance & Consulting Logo" />
+            <div class="service-card-content">
+              <h3>Finanzen & Consulting</h3>
+              <p>Optimierung von Versicherungsschutz, Altersvorsorge, Finanz- und Firmenberatung sowie Finanzierungen mit individueller Betreuung.</p>
+            </div>
+          </div>
+          
+          <div class="service-card">
+            <img src="https://sts-finanzen.de/wp-content/uploads/2020/04/Schumacher_VV_Logo_white_530x110.png" alt="Vermögensverwaltung Logo" />
+            <div class="service-card-content">
+              <h3>Vermögensverwaltung</h3>
+              <p>Professionelle Anlagestrategien, Anlageberatung und Beratung zu Sachwertanlagen und Immobilieninvestments.</p>
+            </div>
+          </div>
+          
+          <div class="service-card">
+            <img src="https://sts-finanzen.de/wp-content/uploads/2020/04/Schumacher_BG_Logo_white_530x110.png" alt="Beteiligungsgesellschaft Logo" />
+            <div class="service-card-content">
+              <h3>Beteiligungsgesellschaft</h3>
+              <p>Spezialisiert auf Mergers & Acquisitions im Finanzdienstleistungsbereich und strategische Investments in Beteiligungen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="beratung-section">
+      <div class="container">
+        <div class="beratung-content">
+          <div class="beratung-bild">
+            <img src="https://sts-finanzen.de/wp-content/uploads/2019/11/Anlagenberatung_1200x800.jpg" alt="Professionelle Finanzberatung">
+          </div>
+          <div class="beratung-text">
+            <h2>Unser Beratungsansatz</h2>
+            <p>Absolute Unabhängigkeit von Produktanbietern gewährleistet unseren unbeeinflussten, objektiven Service für unsere Mandanten.</p>
+            <p>Wir bieten maßgeschneiderte Finanzkonzepte mit höchster Transparenz und nachhaltigem Mehrwert für Ihre Zukunft.</p>
+            <a href="https://sts-finanzen.de/" class="button-link">Weiter zur Homepage</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="success-contact-section">
+      <div class="container">
+        <div class="success-contact-grid">
+          <div class="success-box">
+            <h2>Nachhaltige Erfolge!</h2>
+            <p>Was uns von anderen abhebt: Wir sind ein unabhängiges Expertenteam mit fundierter Praxiserfahrung und absolutem Fokus auf Ihre individuellen Bedürfnisse.</p>
+            <img src="https://sts-finanzen.de/wp-content/uploads/2024/07/landingpage-stefan-schumacher.jpg" alt="Stefan Schumacher, Geschäftsführer" />
+            <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #9a754f;">Stefan Schumacher, Geschäftsführer</p>
+          </div>
+          
+          <div class="contact-box" id="kontakt">
+            <h2>Kontakt</h2>
+            <address>
+              <strong>Schumacher Finanzen und Consulting GmbH</strong><br />
+              Am Grafenbusch 3, 46047 Oberhausen<br /><br />
+              Telefon: <a href="tel:+492088284590">+49 208 82 84 590</a><br />
+              Telefax: +49 208 82 84 59 50<br />
+              E-Mail: <a href="mailto:info@sts-finanzen.de">info@sts-finanzen.de</a><br />
+              Web: <a href="https://sts-finanzen.de" target="_blank">www.sts‑finanzen.de</a>
+            </address>
+
+            <h3>Schreiben Sie uns</h3>
+            <form class="contact-form" name="kontakt" method="POST" data-netlify="true">
+              <input type="text" name="name" placeholder="Ihr Name" required />
+              <input type="email" name="email" placeholder="Ihre E‑Mail-Adresse" required />
+              <textarea name="message" placeholder="Ihre Nachricht an uns" required></textarea>
+              <button type="submit">Nachricht senden</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEUER HINTERGRUND-BEREICH UNTER DEM KONTAKTFORMULAR -->
+    <section class="bottom-background">
+      <div class="container">
+        <div class="bottom-quote">
+          <h2>„Vertrauen ist die Basis jeder erfolgreichen Finanzberatung"</h2>
+          <p>Seit über zwei Jahrzehnten stehen wir unseren Mandanten als verlässlicher Partner zur Seite. Unser Erfolg basiert auf absoluter Transparenz, fundierter Expertise und dem unerschütterlichen Vertrauen unserer Kunden.</p>
+          <p class="signature">— Das Team von STS Finanzen</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Schumacher Finanzen und Consulting GmbH – Alle Rechte vorbehalten</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    function toggleNav() {
+      const nav = document.getElementById('nav');
+      nav.classList.toggle('active');
+    }
+
+    // Smooth Scrolling für alle Links mit Anker
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          // Mobile nav schließen nach Klick
+          document.getElementById('nav').classList.remove('active');
+        }
+      });
+    });
+
+    // Navigation bei Fenster-Resize zurücksetzen
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        document.getElementById('nav').classList.remove('active');
+      }
+    });
+
+    // Accessibility: ESC
